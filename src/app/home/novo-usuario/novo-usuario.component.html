@@ -23,6 +23,10 @@
       *ngIf="novoUsuarioForm.get('userName')?.errors?.['minusculo'] && novoUsuarioForm.get('userName')?.touched"
       mensagem="Apenas letras minúsculas "
     ></app-mensagem>
+    <app-mensagem
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.['usuarioExistente']"
+      mensagem="Usuário já existe"
+    ></app-mensagem>
   </div>
   <div class="mb-3">
     <label for="senha" class="form-label">Senha</label>

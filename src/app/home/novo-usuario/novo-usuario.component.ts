@@ -12,13 +12,16 @@ import { userNameMinusculo } from './validacao.validator';
 export class NovoUsuarioComponent implements OnInit {
   novoUsuarioForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private novoUsuarioService: NovoUsuarioService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private novoUsuarioService: NovoUsuarioService
+    ) { }
 
   ngOnInit(): void {
     this.novoUsuarioForm = this.formBuilder.group({
       fullName: ['',[Validators.required, Validators.minLength(5)] ],
       email: ['', [Validators.required, Validators.email] ],
-      userName: ['', [userNameMinusculo]],
+      userName: ['', [userNameMinusculo], [this.novoUsuarioService.usuarioJaExiste()]],
       password: ['']
     });
   }
