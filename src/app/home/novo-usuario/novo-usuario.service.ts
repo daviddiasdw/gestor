@@ -22,16 +22,17 @@ export class NovoUsuarioService {
    return this.httpClient.get(`http://localhost:3000/user/exists/${nomeUsuario}`)
  }
 
- usuarioJaExiste(){
-  return (control: AbstractControl) => {
-    return control.valueChanges.pipe(switchMap((nomeUsuario) =>
-        this.verificarUsuarioExistente(nomeUsuario)),
-      map((usuarioExiste) =>
-        usuarioExiste ? {usuarioExistente: true}: null),
-        first()
-    );
+  usuarioJaExiste(){
+    return (control: AbstractControl) => {
+      return control.valueChanges.pipe(switchMap((nomeUsuario) =>
+          this.verificarUsuarioExistente(nomeUsuario)),
+        map((usuarioExiste) =>
+          usuarioExiste ? {usuarioExistente: true}: null),
+          first()
+      );
+      }
     }
-  }
+
 
   userNameMinusculo(control: AbstractControl){
     const valor = control.value as string;
@@ -51,5 +52,9 @@ export class NovoUsuarioService {
     } else {
       return null;
     }
+  }
+
+  aceitarTermos(){
+
   }
 }
