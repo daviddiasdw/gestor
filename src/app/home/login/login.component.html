@@ -1,13 +1,16 @@
 <h4 class="text-center">Login</h4><hr>
 
-<form class="form mt-4" (ngSubmit)="login()">
+<form class="form mt-4" (ngSubmit)="login()" #loginForm="ngForm">
   <div class="form-group mb-3">
     <label for="usuario" class="form-label">Usuario</label>
     <input
       type="text"
       class="form-control"
       id="usuario" [(ngModel)]="usuario"
-      name="usuario">
+      name="usuario"
+      #campoUsuario="ngModel"
+      required>
+      <app-mensagem *ngIf="campoUsuario.invalid && campoUsuario.touched" mensagem="Usuário Obrigatório"></app-mensagem>
   </div>
   <div class="form-group mb-3">
     <label for="senha" class="form-label">Senha</label>
@@ -15,11 +18,15 @@
       type="password"
       class="form-control"
       id="senha" [(ngModel)]="senha"
-      name="senha">
+      name="senha"
+      #campoSenha="ngModel"
+      required>
+      <app-mensagem *ngIf="campoSenha.invalid && campoSenha.touched" mensagem="Senha Obrigatório"></app-mensagem>
   </div>
   <!-- <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div> -->
-  <button type="submit" class="btn btn-primary btn-block">Login</button>
+  <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Login</button>
 </form>
+<p>Não é um usuário<a [routerLink]="['novousuario']"> Se Cadastre!</a></p>
