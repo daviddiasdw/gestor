@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NovoUsuario } from './novo-usuario';
 import { NovoUsuarioService } from './novo-usuario.service';
-import { userNameMinusculo } from './validacao.validator';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -21,9 +20,13 @@ export class NovoUsuarioComponent implements OnInit {
     this.novoUsuarioForm = this.formBuilder.group({
       fullName: ['',[Validators.required, Validators.minLength(5)] ],
       email: ['', [Validators.required, Validators.email] ],
-      userName: ['', [userNameMinusculo], [this.novoUsuarioService.usuarioJaExiste()]],
+      userName: ['', [this.novoUsuarioService.userNameMinusculo], [this.novoUsuarioService.usuarioJaExiste()]],
       password: ['']
-    });
+    },
+    {
+      validators: [this.novoUsuarioService.usuarioSenhaValidator],
+    }
+    );
   }
 
   cadastrar(){

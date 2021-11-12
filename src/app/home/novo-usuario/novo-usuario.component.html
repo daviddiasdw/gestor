@@ -8,11 +8,13 @@
     <label for="email" class="form-label">Email</label>
     <input type="email" class="form-control" id="email" formControlName="email">
     <app-mensagem
-      *ngIf="novoUsuarioForm.get('email')?.errors?.['required'] && novoUsuarioForm.get('email')?.touched"
+      *ngIf="novoUsuarioForm.get('email')?.errors?.['required'] &&
+      novoUsuarioForm.get('email')?.touched"
       mensagem="E-mail obrigatório"
     ></app-mensagem>
     <app-mensagem
-      *ngIf="novoUsuarioForm.get('email')?.errors?.['email'] && novoUsuarioForm.get('email')?.touched"
+      *ngIf="novoUsuarioForm.get('email')?.errors?.['email'] &&
+      novoUsuarioForm.get('email')?.touched"
       mensagem="E-mail no formato incorreto"
     ></app-mensagem>
   </div>
@@ -20,7 +22,8 @@
     <label for="usuario" class="form-label">Usuário</label>
     <input type="text" class="form-control" id="usuario" formControlName="userName">
     <app-mensagem
-      *ngIf="novoUsuarioForm.get('userName')?.errors?.['minusculo'] && novoUsuarioForm.get('userName')?.touched"
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.['minusculo'] &&
+      novoUsuarioForm.get('userName')?.touched"
       mensagem="Apenas letras minúsculas "
     ></app-mensagem>
     <app-mensagem
@@ -31,6 +34,11 @@
   <div class="mb-3">
     <label for="senha" class="form-label">Senha</label>
     <input type="password" class="form-control" id="senha" formControlName="password">
+    <app-mensagem
+    *ngIf="novoUsuarioForm.errors?.['senhaIgualUsuario']"
+    mensagem="Senha deve ser diferente do usuário"
+  >
+  </app-mensagem>
   </div>
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
