@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NovoUsuario } from './novo-usuario';
@@ -5,21 +6,21 @@ import { AbstractControl } from '@angular/forms';
 import { first, map, switchMap } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 
+const API = environment.apiURL
+
 @Injectable({
   providedIn: 'root'
 })
 export class NovoUsuarioService {
-  urlSignup = 'http://localhost:3000/user/signup'
-  // urlUser = ``http://localhost:3000/user/exists/${nomeUsuario}`
 
   constructor(private httpClient: HttpClient) {}
 
  cadastraNovoUsuario(novoUsuario: NovoUsuario){
-   return this.httpClient.post(this.urlSignup, novoUsuario);
+   return this.httpClient.post(`${API}/user/signup`, novoUsuario);
  }
 
  verificarUsuarioExistente(nomeUsuario: string){
-   return this.httpClient.get(`http://localhost:3000/user/exists/${nomeUsuario}`)
+   return this.httpClient.get(`${API}/user/exists/${nomeUsuario}`)
  }
 
   usuarioJaExiste(){

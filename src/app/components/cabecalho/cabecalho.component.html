@@ -1,0 +1,18 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-white bg-info shadow">
+    <a href="" class="navbar-brand text-white">Gestor</a>
+    <div class="" *ngIf="user$ | async as user">
+      <div *ngIf="user.name; else login">
+        <i class="fa fa-user circle mr-1"></i>
+        <a href="" class="mr-1"></a>
+        <a class="mr-1">{{ user.name }}</a>
+        <a (click)="logout()">logout</a>
+      </div>
+    </div>
+  </nav>
+  <ng-template #login>
+    <span class="navbar-text">
+      <a class="text-white nav-link" [routerLink]="['']">Login</a>
+    </span>
+  </ng-template>
+</header>
